@@ -1,0 +1,127 @@
+{
+  "type": "record",
+  "name": "ConversionEvent",
+  "namespace": "com.ico.analytics.events",
+  "doc": "Schema for ICO conversion events",
+  "fields": [
+    {
+      "name": "conversion_id",
+      "type": "string",
+      "doc": "Unique identifier for the conversion"
+    },
+    {
+      "name": "user_id",
+      "type": "string",
+      "doc": "User identifier"
+    },
+    {
+      "name": "session_id",
+      "type": "string",
+      "doc": "Session identifier where conversion occurred"
+    },
+    {
+      "name": "timestamp",
+      "type": "string",
+      "doc": "Conversion timestamp in ISO 8601 format"
+    },
+    {
+      "name": "conversion_type",
+      "type": {
+        "type": "enum",
+        "name": "ConversionType",
+        "symbols": [
+          "wallet_connect", "presale_participate", "newsletter_signup", 
+          "whitepaper_download", "kyc_complete", "referral_signup",
+          "social_follow", "community_join"
+        ]
+      },
+      "doc": "Type of conversion"
+    },
+    {
+      "name": "ico_website_id",
+      "type": "int",
+      "doc": "ID of the ICO website"
+    },
+    {
+      "name": "amount_usd",
+      "type": ["null", "float"],
+      "default": null,
+      "doc": "Amount in USD (for financial conversions)"
+    },
+    {
+      "name": "token_amount",
+      "type": ["null", "float"],
+      "default": null,
+      "doc": "Number of tokens purchased/allocated"
+    },
+    {
+      "name": "payment_method",
+      "type": ["null", {
+        "type": "enum",
+        "name": "PaymentMethod",
+        "symbols": ["ETH", "BTC", "USDT", "USDC", "BNB", "MATIC", "credit_card", "bank_transfer"]
+      }],
+      "default": null,
+      "doc": "Payment method used"
+    },
+    {
+      "name": "funnel_stage",
+      "type": {
+        "type": "enum",
+        "name": "FunnelStage",
+        "symbols": ["awareness", "interest", "consideration", "purchase", "retention", "advocacy"]
+      },
+      "doc": "Marketing funnel stage"
+    },
+    {
+      "name": "time_to_convert",
+      "type": "int",
+      "doc": "Time from first visit to conversion in seconds"
+    },
+    {
+      "name": "previous_visits",
+      "type": "int",
+      "default": 0,
+      "doc": "Number of previous visits before conversion"
+    },
+    {
+      "name": "conversion_value_score",
+      "type": ["null", "float"],
+      "default": null,
+      "doc": "Calculated conversion value score"
+    },
+    {
+      "name": "transaction_hash",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "Blockchain transaction hash (for crypto payments)"
+    },
+    {
+      "name": "discount_code",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "Discount or promo code used"
+    },
+    {
+      "name": "referrer_user_id",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "User ID of referrer (for referral conversions)"
+    },
+    {
+      "name": "conversion_metadata",
+      "type": ["null", {
+        "type": "map",
+        "values": "string"
+      }],
+      "default": null,
+      "doc": "Additional conversion metadata"
+    },
+    {
+      "name": "schema_version",
+      "type": "string",
+      "default": "1.0",
+      "doc": "Schema version for evolution"
+    }
+  ]
+}

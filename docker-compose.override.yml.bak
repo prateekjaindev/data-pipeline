@@ -1,0 +1,56 @@
+# Development overrides
+# This file is automatically loaded by docker-compose
+version: '3.8'
+
+services:
+  data-generator:
+    # Mount source code for development
+    volumes:
+      - ./data-generator:/app
+    environment:
+      - LOG_LEVEL=DEBUG
+      - EVENTS_PER_MINUTE=100
+    # Restart on code changes
+    restart: unless-stopped
+
+  flink-jobmanager:
+    environment:
+      - FLINK_PROPERTIES=
+        jobmanager.rpc.address: flink-jobmanager
+        parallelism.default: 1
+        state.checkpoints.dir: file:///tmp/flink-checkpoints
+        state.savepoints.dir: file:///tmp/flink-savepoints
+        web.submit.enable: true
+        # Development settings
+        taskmanager.memory.process.size: 1024m
+        jobmanager.memory.process.size: 512m
+
+  flink-taskmanager:
+    environment:
+      - FLINK_PROPERTIES=
+        jobmanager.rpc.address: flink-jobmanager
+        taskmanager.numberOfTaskSlots: 1
+        parallelism.default: 1
+        # Development settings
+        taskmanager.memory.process.size: 1024m
+
+  postgres:
+    # Enable logging for development
+    command: postgres -c log_statement=all -c log_destination=stderr
+    environment:
+      - POSTGRES_LOG_STATEMENT=all
+    # Persist data in development
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  grafana:
+    # Allow anonymous access in development
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_LOG_LEVEL=debug
+
+volumes:
+  postgres_dev_data:

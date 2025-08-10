@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(chmod:*)",
+      "Bash(./scripts/verify-setup.sh:*)",
+      "Bash(cp:*)",
+      "Bash(make:*)",
+      "Bash(docker-compose config:*)",
+      "Bash(mv:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(docker-compose:*)"
+    ],
+    "deny": []
+  }
+}

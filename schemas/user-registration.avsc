@@ -1,0 +1,128 @@
+{
+  "type": "record",
+  "name": "UserRegistration",
+  "namespace": "com.ico.analytics.events",
+  "doc": "Schema for ICO user registration events",
+  "fields": [
+    {
+      "name": "registration_id",
+      "type": "string",
+      "doc": "Unique identifier for the registration"
+    },
+    {
+      "name": "user_id",
+      "type": "string",
+      "doc": "Unique user identifier"
+    },
+    {
+      "name": "timestamp",
+      "type": "string",
+      "doc": "Registration timestamp in ISO 8601 format"
+    },
+    {
+      "name": "email",
+      "type": "string",
+      "doc": "User email address"
+    },
+    {
+      "name": "wallet_address",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "Crypto wallet address"
+    },
+    {
+      "name": "social_handles",
+      "type": {
+        "type": "map",
+        "values": "string"
+      },
+      "default": {},
+      "doc": "Map of social media handles (platform -> handle)"
+    },
+    {
+      "name": "consent_marketing",
+      "type": "boolean",
+      "default": false,
+      "doc": "Whether user consented to marketing communications"
+    },
+    {
+      "name": "consent_data",
+      "type": "boolean",
+      "default": true,
+      "doc": "Whether user consented to data processing"
+    },
+    {
+      "name": "country",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "User's country"
+    },
+    {
+      "name": "ip_address",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "IP address at registration"
+    },
+    {
+      "name": "ico_website_id",
+      "type": "int",
+      "doc": "ID of the ICO website where user registered"
+    },
+    {
+      "name": "referral_source",
+      "type": ["null", {
+        "type": "enum",
+        "name": "ReferralSource",
+        "symbols": ["google", "twitter", "reddit", "telegram", "facebook", "direct", "email", "affiliate"]
+      }],
+      "default": null,
+      "doc": "Source of referral"
+    },
+    {
+      "name": "kyc_completed",
+      "type": "boolean",
+      "default": false,
+      "doc": "Whether KYC verification is completed"
+    },
+    {
+      "name": "verification_tier",
+      "type": {
+        "type": "enum",
+        "name": "VerificationTier",
+        "symbols": ["basic", "advanced", "premium", "institutional"]
+      },
+      "default": "basic",
+      "doc": "User verification tier"
+    },
+    {
+      "name": "user_agent",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "User agent at registration"
+    },
+    {
+      "name": "utm_source",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "UTM source parameter"
+    },
+    {
+      "name": "utm_medium",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "UTM medium parameter"
+    },
+    {
+      "name": "utm_campaign",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "UTM campaign parameter"
+    },
+    {
+      "name": "schema_version",
+      "type": "string",
+      "default": "1.0",
+      "doc": "Schema version for evolution"
+    }
+  ]
+}

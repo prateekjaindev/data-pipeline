@@ -1,0 +1,151 @@
+{
+  "type": "record",
+  "name": "ClickstreamEvent",
+  "namespace": "com.ico.analytics.events",
+  "doc": "Schema for ICO website clickstream events",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "Unique identifier for the event"
+    },
+    {
+      "name": "session_id",
+      "type": "string",
+      "doc": "Unique session identifier"
+    },
+    {
+      "name": "user_id",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "User identifier if available"
+    },
+    {
+      "name": "timestamp",
+      "type": "string",
+      "doc": "Event timestamp in ISO 8601 format"
+    },
+    {
+      "name": "event_type",
+      "type": {
+        "type": "enum",
+        "name": "EventType",
+        "symbols": ["page_view", "click", "scroll", "form_interaction", "download", "video_play"]
+      },
+      "doc": "Type of event"
+    },
+    {
+      "name": "page_type",
+      "type": {
+        "type": "enum",
+        "name": "PageType",
+        "symbols": [
+          "homepage", "whitepaper", "team", "roadmap", "tokenomics", 
+          "presale", "register", "kyc", "dashboard", "faq", "contact", 
+          "blog", "news", "community"
+        ]
+      },
+      "doc": "Type of page where event occurred"
+    },
+    {
+      "name": "page_url",
+      "type": "string",
+      "doc": "Full URL of the page"
+    },
+    {
+      "name": "referrer",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "Referrer URL"
+    },
+    {
+      "name": "user_agent",
+      "type": "string",
+      "doc": "User agent string"
+    },
+    {
+      "name": "ip_address",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "IP address of the user"
+    },
+    {
+      "name": "country",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "Country of the user"
+    },
+    {
+      "name": "city",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "City of the user"
+    },
+    {
+      "name": "device_type",
+      "type": {
+        "type": "enum",
+        "name": "DeviceType",
+        "symbols": ["desktop", "mobile", "tablet"]
+      },
+      "doc": "Type of device used"
+    },
+    {
+      "name": "browser",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "Browser name"
+    },
+    {
+      "name": "session_duration",
+      "type": ["null", "int"],
+      "default": null,
+      "doc": "Current session duration in seconds"
+    },
+    {
+      "name": "page_load_time",
+      "type": "float",
+      "doc": "Page load time in seconds"
+    },
+    {
+      "name": "ico_website_id",
+      "type": "int",
+      "doc": "ID of the ICO website"
+    },
+    {
+      "name": "ico_website_name",
+      "type": "string",
+      "doc": "Name of the ICO website"
+    },
+    {
+      "name": "button_clicked",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "Name of button clicked (if event_type is click)"
+    },
+    {
+      "name": "form_filled",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "Type of form filled (if event_type is form_interaction)"
+    },
+    {
+      "name": "scroll_depth",
+      "type": ["null", "float"],
+      "default": null,
+      "doc": "Scroll depth percentage (if event_type is scroll)"
+    },
+    {
+      "name": "bounce",
+      "type": "boolean",
+      "default": false,
+      "doc": "Whether this session is a bounce"
+    },
+    {
+      "name": "schema_version",
+      "type": "string",
+      "default": "1.0",
+      "doc": "Schema version for evolution"
+    }
+  ]
+}

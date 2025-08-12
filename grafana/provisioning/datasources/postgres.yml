@@ -3,11 +3,12 @@ apiVersion: 1
 datasources:
   - name: PostgreSQL-Analytics
     type: postgres
+    uid: postgres-analytics
     url: postgres:5432
     database: ico_analytics
-    user: grafana_user
+    user: ico_user
     secureJsonData:
-      password: grafana_password
+      password: ico_password
     jsonData:
       sslmode: disable
       postgresVersion: 1500
